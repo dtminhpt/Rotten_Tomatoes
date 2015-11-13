@@ -26,8 +26,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
          
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
-               
-               self.movies = json["movies"] as? [NSDictionary]
+                self.movies = json["movies"] as? [NSDictionary]
                 
                 self.tableView.reloadData()
               
@@ -48,13 +47,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     {
         
         if let movies = movies {
-            
-            return movies.count
+           return movies.count
             
         } else {
-            
-            return 0
-            
+           return 0
+           
         }
         
     }
@@ -71,23 +68,33 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.synopsisLabel.text = movie["synopsis"] as? String
 
         
-        
         let url = NSURL(string: movie.valueForKeyPath("posters.thumbnail") as! String )!
-        //print("hello\(url)")
         cell.posterView.setImageWithURL(url)
         
         return cell
-    
     }
 
-    /*
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+                let cell = sender as! UITableViewCell
+        
+        let indexPath = tableView.indexPathForCell(cell)!
+        
+        let movie = movies![indexPath.row]
+        
         // Get the new view controller using segue.destinationViewController.
+        let movieDetailsViewController = segue.destinationViewController as! MovieDetailsViewController
+        
         // Pass the selected object to the new view controller.
+        movieDetailsViewController.movie = movie
+        
     }
-    */
 
 }
