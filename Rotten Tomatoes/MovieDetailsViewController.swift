@@ -23,8 +23,10 @@ class MovieDetailsViewController: UIViewController {
         titleLabel.text = movie["title"] as? String
         synopsisLabel.text = movie["synopsis"] as? String
         
+        
         let url = NSURL(string: movie.valueForKeyPath("posters.detailed") as! String )!
         imageView.setImageWithURL(url)
+        
     }
 
     override func didReceiveMemoryWarning() {

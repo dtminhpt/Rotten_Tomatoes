@@ -15,6 +15,7 @@
 		BA4E5A5B1BF1DB42005035FE /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E5A5A1BF1DB42005035FE /* MoviesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		BA4E5A611BF327F9005035FE /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4E5A601BF327F9005035FE /* MovieCell.swift */; settings = {ASSET_TAGS = (); }; };
 		BADA42171BF588EF00D77C45 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA42161BF588EF00D77C45 /* MovieDetailsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		BADA421B1BF63F4F00D77C45 /* CozyLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADA421A1BF63F4F00D77C45 /* CozyLoadingActivity.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		BA4E5A601BF327F9005035FE /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		BA4E5A621BF33D22005035FE /* Rotten Tomatoes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rotten Tomatoes-Bridging-Header.h"; sourceTree = "<group>"; };
 		BADA42161BF588EF00D77C45 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		BADA421A1BF63F4F00D77C45 /* CozyLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CozyLoadingActivity.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		BA4E5A471BF1DB10005035FE /* Rotten Tomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				BADA421A1BF63F4F00D77C45 /* CozyLoadingActivity.swift */,
 				BA4E5A5D1BF32752005035FE /* Views */,
 				BA4E5A5C1BF1DB62005035FE /* View controllers */,
 				BA4E5A481BF1DB10005035FE /* AppDelegate.swift */,
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADA421B1BF63F4F00D77C45 /* CozyLoadingActivity.swift in Sources */,
 				BADA42171BF588EF00D77C45 /* MovieDetailsViewController.swift in Sources */,
 				BA4E5A491BF1DB10005035FE /* AppDelegate.swift in Sources */,
 				BA4E5A5B1BF1DB42005035FE /* MoviesViewController.swift in Sources */,

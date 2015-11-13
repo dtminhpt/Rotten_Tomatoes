@@ -22,6 +22,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let url = NSURL(string: "https://coderschool-movies.herokuapp.com/movies?api_key=xja087zcvxljadsflh214")!
         
         let request = NSURLRequest(URL: url)
+        CozyLoadingActivity.show("Loading...", disableUI: true)
+
       
        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
          
@@ -29,10 +31,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
                 self.movies = json["movies"] as? [NSDictionary]
                 
+                
                 self.tableView.reloadData()
+                CozyLoadingActivity.hide(success: true, animated: true)
               
             } catch {
                 print("json error: \(error)")
+                CozyLoadingActivity.hide(success: false, animated: true)
             }
         })
         tableView.dataSource = self
@@ -84,7 +89,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-                let cell = sender as! UITableViewCell
+        let cell = sender as! UITableViewCell
         
         let indexPath = tableView.indexPathForCell(cell)!
         
