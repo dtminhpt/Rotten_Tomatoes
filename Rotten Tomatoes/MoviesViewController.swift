@@ -11,9 +11,8 @@ import UIKit
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var movies: [NSDictionary]?
-    var checked: [Bool]!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,27 +23,39 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let request = NSURLRequest(URL: url)
         CozyLoadingActivity.show("Loading...", disableUI: true)
 
-      
-       NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-         
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+        
+            guard error == nil else  {
+                CozyLoadingActivity.hide(success: false, animated: true)
+                print("error loading from URL", error!)
+               
+                UIView.animateWithDuration(5,
+                    animations:
+                    {
+                        self.label.alpha = 1
+                        self.label.text = "Network Error!"
+                    })
+                return
+            }
+            
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
                 self.movies = json["movies"] as? [NSDictionary]
-                
                 
                 self.tableView.reloadData()
                 CozyLoadingActivity.hide(success: true, animated: true)
               
             } catch {
-                print("json error: \(error)")
                 CozyLoadingActivity.hide(success: false, animated: true)
+                print("json error")
             }
         })
         tableView.dataSource = self
         tableView.delegate = self
 
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
